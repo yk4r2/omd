@@ -19,7 +19,7 @@ def step1():
 def step2_umbrella():
     print(
         'Гусь-за-ногу-кусь стащил зонтик у мимо проходящей бабушки 👵. '
-        'Найти чего-нибудь перекусить в дорогу? '
+        'Найти чего-нибудь перекусить в дорогу?'
     )
     option = ''
     options = {'да': True, 'нет': False}
@@ -71,14 +71,14 @@ def step3_no_burger():
         'Начать заново?'
     )
     option = ''
-    options = {'да': True}
-    while option not in options:
-        print('Выберите: {}'.format(*options))
+    options = {'да': True, 'нет': False}
+    while option not in options: 
+        print('Выберите: {}/{}'.format(*options))
         option = input()
 
     if options[option]:
         return step1()
-
+    exit()
 
 def step4_mountain():
     print(
@@ -86,13 +86,14 @@ def step4_mountain():
         'Начать заново?'
     )
     option = ''
-    options = {'да': True}
+    options = {'да': True, 'нет': False}
     while option not in options:
-        print('Выберите: {}'.format(*options))
+        print('Выберите: {}/{}'.format(*options))
         option = input()
 
     if options[option]:
         return step1()
+    exit()
 
 
 def step4_no_mountain():
@@ -101,14 +102,14 @@ def step4_no_mountain():
         'Начать заново?'
     )
     option = ''
-    options = {'да': True}
+    options = {'да': True, 'нет': False}
     while option not in options:
-        print('Выберите: {}'.format(*options))
+        print('Выберите: {}/{}'.format(*options))
         option = input()
 
     if options[option]:
         return step1()
-
+    exit()
 
 if __name__ == '__main__':
     step1()
