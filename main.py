@@ -10,10 +10,11 @@ def step1():
     while option not in options:
         print('Выберите: {}/{}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step2_umbrella()
     return step2_no_umbrella()
+
 
 def step2_umbrella():
     print(
@@ -25,10 +26,11 @@ def step2_umbrella():
     while option not in options:
         print('Выберите: {}/{}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step3_burger()
     return step3_no_burger()
+
 
 def step2_no_umbrella():
     print(
@@ -40,10 +42,11 @@ def step2_no_umbrella():
     while option not in options:
         print('Выберите: {}/{}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step3_burger()
     return step3_no_burger()
+
 
 def step3_burger():
     print(
@@ -55,52 +58,57 @@ def step3_burger():
     while option not in options:
         print('Выберите: {}/{}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step4_mountain()
     return step4_no_mountain()
 
+
 def step3_no_burger():
     print(
-        'Гусь-рокер-с-марса зацепил шланг бочки с бензином и взорвал бензоколонку.'
+        'Гусь-рокер-с-марса зацепил шланг бочки с бензином '
+        'и взорвал бензоколонку. '
         'Начать заново?'
     )
     option = ''
     options = {'да': True}
     while option not in options:
-        print('Выберите: {}/{}'.format(*options))
+        print('Выберите: {}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step1()
+
 
 def step4_mountain():
     print(
-        'Гусь-наверх-крадусь взошёл на гору. Йей.'
+        'Гусь-наверх-крадусь взошёл на гору. Йей. '
         'Начать заново?'
     )
     option = ''
     options = {'да': True}
     while option not in options:
-        print('Выберите: {}/{}'.format(*options))
+        print('Выберите: {}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step1()
+
 
 def step4_no_mountain():
     print(
-        'Гусь-наверх-крадусь пошёл пакостничать дальше, его отловили и съели.'
+        'Гусь-наверх-крадусь пошёл пакостничать дальше, его отловили и съели. '
         'Начать заново?'
     )
     option = ''
     options = {'да': True}
     while option not in options:
-        print('Выберите: {}/{}'.format(*options))
+        print('Выберите: {}'.format(*options))
         option = input()
-    
+
     if options[option]:
         return step1()
 
- __name__ == '__main__':
+
+if __name__ == '__main__':
     step1()
