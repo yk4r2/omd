@@ -2,6 +2,7 @@ from typing import List
 
 
 def csv_to_list(path: str, splitter: str = ';') -> List[List[str]]:
+  '''Converts your csv to list.'''
   file = open(path, "r")
   filedata = file.readlines()
   file.close()
@@ -13,6 +14,7 @@ def csv_to_list(path: str, splitter: str = ';') -> List[List[str]]:
 
 
 def get_departments(rawdata: List[List[str]]) -> List[str]:
+  '''Gets department list.'''
   transposed = list(zip(*rawdata))[2]
   department = []
   for i in range(len(rawdata)):
@@ -25,6 +27,15 @@ def get_departments(rawdata: List[List[str]]) -> List[str]:
 def get_report(rawdata: List[List[str]],
                departments: List[str],
                ) -> List[str]:
+  '''Makes a report out of your data and departments list.
+
+  Output:
+    Name of a department,
+    Count of employees,
+    Max salary,
+    Min salary,
+    Avg salary.
+  '''
   result = []
   depsRaw = list(zip(*rawdata))[2]
   for dep in departments:
@@ -53,6 +64,7 @@ def get_report(rawdata: List[List[str]],
 
 
 def report_to_csv(report: List[str], filePath: str = 'report.csv') -> None:
+  '''Turns your report list to a csv file.'''
   with open(filePath, 'w') as file:
     file.write(str('Department;Employee;Max salary;' +
                    'Min salary;Avg salary (rounded)\n'))
@@ -63,6 +75,7 @@ def report_to_csv(report: List[str], filePath: str = 'report.csv') -> None:
 
 def print_deps(path: str = "content/funcs_homework_employees_sample.csv"
                ) -> None:
+  '''Prints departments list.'''
   data = csv_to_list(path)
   deps = get_departments(data)
   print(deps)
@@ -70,6 +83,7 @@ def print_deps(path: str = "content/funcs_homework_employees_sample.csv"
 
 def print_report(path: str = "content/funcs_homework_employees_sample.csv"
                  ) -> None:
+  '''Prints report.'''
   data = csv_to_list(path)
   deps = get_departments(data)
   report = get_report(data, deps)
@@ -80,6 +94,7 @@ def print_report(path: str = "content/funcs_homework_employees_sample.csv"
 
 def save_report(path: str = "content/funcs_homework_employees_sample.csv"
                 ) -> None:
+  '''Saves report to a csv file.'''
   data = csv_to_list(path)
   deps = get_departments(data)
   report = get_report(data, deps)
