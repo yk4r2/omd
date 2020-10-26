@@ -1,21 +1,20 @@
-import numpy as np
-import scipy.sparse as sp
 from typing import List
 
 
 class CountVectorizer:
-    def __init__(self, max_words=500):
-        self.max_words = max_words
+    def __init__(self):
         self.feature_names = []
 
-    def get_feature_names(self, corpus):
+    def get_feature_names(self, corpus: List[List[str]]) -> List[str]:
+        '''Fills in all the words matrix for encoding.'''
         for sentence in corpus:
             for word in sentence.split(' '):
                 if word.lower() not in self.feature_names:
                     self.feature_names.append(word.lower())
         return self.feature_names
 
-    def fit_transform(self, corpus):
+    def fit_transform(self, corpus: List[str]) -> List[List[int]]:
+        '''Makes some kinda one-hot encoding for every word in sentence.'''
         words = {}
         result = []
         _ = self.get_feature_names(corpus)
@@ -26,14 +25,14 @@ class CountVectorizer:
 
             for i in line.split(' '):
                 words[i.lower()] += 1
-            
+
             result.append(list(words.values()))
         return result
 
 
 corpus = [
-'Crock Pot Pasta Never boil pasta again',
-'Pasta Pomodoro Fresh ingredients Parmesan to taste'
+    'Crock Pot Pasta Never boil pasta again',
+    'Pasta Pomodoro Fresh ingredients Parmesan to taste',
 ]
 vectorizer = CountVectorizer()
 
