@@ -38,4 +38,3 @@ vectorizer = CountVectorizer()
 
 print(vectorizer.get_feature_names(corpus))
 print(vectorizer.fit_transform(corpus))
-
