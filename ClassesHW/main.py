@@ -30,11 +30,12 @@ class CountVectorizer:
         return result
 
 
-corpus = [
-    'Crock Pot Pasta Never boil pasta again',
-    'Pasta Pomodoro Fresh ingredients Parmesan to taste',
-]
-vectorizer = CountVectorizer()
+if name == "__main__":
+    corpus = [
+        'Crock Pot Pasta Never boil pasta again',
+        'Pasta Pomodoro Fresh ingredients Parmesan to taste',
+    ]
+    vectorizer = CountVectorizer()
 
-print(vectorizer.get_feature_names(corpus))
-print(vectorizer.fit_transform(corpus))
+    print(vectorizer.get_feature_names(corpus))
+    print(vectorizer.fit_transform(corpus))
