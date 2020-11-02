@@ -1,9 +1,10 @@
 from typing import List
+from collections import defaultdict
 
 
 class CountVectorizer:
     def __init__(self):
-        self._feature_names = []
+        self._feature_names = defaultdict([])
 
     def get_feature_names(self, corpus: List[List[str]]) -> List[str]:
         '''Fills in all the words matrix for encoding.'''
