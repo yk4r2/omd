@@ -3,15 +3,15 @@ from typing import List
 
 class CountVectorizer:
     def __init__(self):
-        self.feature_names = []
+        self._feature_names = []
 
     def get_feature_names(self, corpus: List[List[str]]) -> List[str]:
         '''Fills in all the words matrix for encoding.'''
         for sentence in corpus:
             for word in sentence.split(' '):
-                if word.lower() not in self.feature_names:
-                    self.feature_names.append(word.lower())
-        return self.feature_names
+                if word.lower() not in self._feature_names:
+                    self._feature_names.append(word.lower())
+        return self._feature_names
 
     def fit_transform(self, corpus: List[str]) -> List[List[int]]:
         '''Makes some kinda one-hot encoding for every word in sentence.'''
@@ -20,7 +20,7 @@ class CountVectorizer:
         _ = self.get_feature_names(corpus)
 
         for line in corpus:
-            for word in self.feature_names:
+            for word in self._feature_names:
                 words[word] = 0
 
             for i in line.split(' '):
