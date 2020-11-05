@@ -6,15 +6,15 @@ class CountVectorizer:
         self._feature_names = []
 
     def get_feature_names(self, corpus: List[List[str]]) -> List[str]:
-        '''Fills in all the words matrix for encoding.'''
+        """Fills in all the words matrix for encoding."""
         for sentence in corpus:
-            for word in sentence.split(' '):
+            for word in sentence.split(" "):
                 if word.lower() not in self._feature_names:
                     self._feature_names.append(word.lower())
         return self._feature_names
 
     def fit_transform(self, corpus: List[str]) -> List[List[int]]:
-        '''Makes some kinda one-hot encoding for every word in sentence.'''
+        """Makes some kinda one-hot encoding for every word in sentence."""
         words = {}
         result = []
         _ = self.get_feature_names(corpus)
@@ -23,7 +23,7 @@ class CountVectorizer:
             for word in self._feature_names:
                 words[word] = 0
 
-            for i in line.split(' '):
+            for i in line.split(" "):
                 words[i.lower()] += 1
 
             result.append(list(words.values()))
@@ -32,8 +32,8 @@ class CountVectorizer:
 
 if __name__ == "__main__":
     corpus = [
-        'Crock Pot Pasta Never boil pasta again',
-        'Pasta Pomodoro Fresh ingredients Parmesan to taste',
+        "Crock Pot Pasta Never boil pasta again",
+        "Pasta Pomodoro Fresh ingredients Parmesan to taste",
     ]
     vectorizer = CountVectorizer()
 
