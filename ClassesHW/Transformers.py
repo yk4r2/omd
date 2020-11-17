@@ -4,22 +4,24 @@ from functools import reduce
 from operator import add
 
 
-class TfidfTransformer():
+class TfidfTransformer:
     """
     Transforms numeric matrix into tf-idf matrix.
     do_round is whether we round numbers or not.
     """
+
     def __init__(self, do_round=True):
         self.do_round = do_round
 
     def tf_transform(self, count_matrix):
         if self.do_round:
-            return [*map(lambda x: [*map(lambda y: round(y / reduce(add, x), 3), x)],
-                         cmatrix
-                         )
-                    ] 
+            return [
+                *map(
+                    lambda x: [*map(lambda y: round(y / reduce(add, x), 3), x)], cmatrix
+                )
+            ]
         else:
-            return [*map(lambda x: [*map(lambda y: y / reduce(add, x), x)], cmatrix)] 
+            return [*map(lambda x: [*map(lambda y: y / reduce(add, x), x)], cmatrix)]
 
     def idf_transform(self, count_matrix):
         n = len(count_matrix)
@@ -40,19 +42,17 @@ class TfidfTransformer():
         tf = self.tf_transform(count_matrix)
         idf = self.idf_transform(count_matrix)
         if self.do_round:
-            return [[round(j * idf[i], 3) for i, j in enumerate(row)]
-                    for row in tf
-                    ]
+            return [[round(j * idf[i], 3) for i, j in enumerate(row)] for row in tf]
         else:
-            return [[j * idf[i] for i, j in enumerate(row)]
-                    for row in tf
-                    ]
+            return [[j * idf[i] for i, j in enumerate(row)] for row in tf]
+
 
 class TfidfVectorizer(TfidfTransformer, CountVectorizer):
     """
     Transforms corpus of texts into TfIdf matrix
     do_round is the same as in TfIdf
     """
+
     def __init__(self, do_round=True):
         CountVectorizer.__init__(self)
         TfidfTransformer.__init__(self, do_round)
@@ -66,17 +66,17 @@ class TfidfVectorizer(TfidfTransformer, CountVectorizer):
         return final_matrix
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cmatrix = [
         [1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1]
+        [0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1],
     ]
     transformer = TfidfTransformer()
     print(transformer.fit_transform(cmatrix))
 
     corpus = [
-        'Crock Pot Pasta Never boil pasta again',
-        'Pasta Pomodoro Fresh ingredients Parmesan to taste'
+        "Crock Pot Pasta Never boil pasta again",
+        "Pasta Pomodoro Fresh ingredients Parmesan to taste",
     ]
 
     vectorizer = TfidfVectorizer()
