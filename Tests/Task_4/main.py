@@ -17,24 +17,14 @@ def test_ft_empty():
     assert fit_transform([]) == []
 
 
-def test_name():
-    name = ["Andrey", "Nikita", "Andrey", "Vlad"]
-    exp_transformed_name = [
-        ("Andrey", [0, 0, 1]),
-        ("Nikita", [0, 1, 0]),
-        ("Andrey", [0, 0, 1]),
-        ("Vlad", [1, 0, 0]),
-    ]
-    assert fit_transform(name) == exp_transformed_name
-
-
 def test_subject():
-    subject = ["Python", "Statistic", "SQL", "SQL", "ML"]
+    subject = ["Python", "Statistic", "SQL", "SQL", "ML", "Python"]
     exp_transformed_subject = [
         ("Python", [0, 0, 0, 1]),
         ("Statistic", [0, 0, 1, 0]),
         ("SQL", [0, 1, 0, 0]),
         ("SQL", [0, 1, 0, 0]),
         ("ML", [1, 0, 0, 0]),
+        ("Python", [0, 0, 0, 1]),
     ]
     assert fit_transform(subject) == exp_transformed_subject
